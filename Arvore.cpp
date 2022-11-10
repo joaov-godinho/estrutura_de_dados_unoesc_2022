@@ -28,31 +28,33 @@ struct noh* inserir(noh* nohzito, int dado)
     return nohzito;
 }
 
-void em_ordem(struct noh* raiz)
-{
-    if (raiz != NULL) {
-        em_ordem(raiz->esquerda);
-        std::cout << raiz->dado << '\n';
-        em_ordem(raiz->direita);
-    }
-}
 
-void pre_ordem(struct noh* raiz)
-{
-    if (raiz != NULL) {
-        std::cout << raiz->dado << '\n';
-        pre_ordem(raiz->esquerda);
-        pre_ordem(raiz->direita);
-    }
+// se a raiz não for nula, soma 1 a cada nó que passa tanto na esquerda quanto na direita, contando o total de nós.
+int contarNos(noh* raiz) {
+    if (raiz == NULL)
+        return 0;
+    return 1 + contarNos(raiz->esquerda) + contarNos(raiz->direita);
 }
-
-void pos_ordem(struct noh* raiz)
-{
-    if (raiz != NULL) {
-        pos_ordem(raiz->esquerda);
-        pos_ordem(raiz->direita);
-        std::cout << raiz->dado << '\n';
+//se a raiz não for nula, percorre a árvore somando os dados de cada nó, obtendo a soma total.
+int somarNos(noh* raiz) {
+    if (raiz == NULL)
+        return 0;
+    return raiz->dado + somarNos(raiz->esquerda) + somarNos(raiz->direita);
+}
+//se a raiz não for nula, é contado a altura de cada lado da árvore, retornando no final o maior lado.
+int altura(noh* raiz) {
+    if (raiz == NULL)
+        return 0;
+    else {
+        int esq = 1 + altura(raiz->esquerda);
+        int dir = 1 + altura(raiz->direita);
+        if (esq > dir)
+          return esq;
+        else 
+          return dir;
     }
+
+
 }
 
 void arvore() {
@@ -61,15 +63,26 @@ void arvore() {
     inserir(raiz_de_todos_os_males, 30);
     inserir(raiz_de_todos_os_males, 20);
     inserir(raiz_de_todos_os_males, 40);
+    inserir(raiz_de_todos_os_males, 25);
+    inserir(raiz_de_todos_os_males, 10);
+    inserir(raiz_de_todos_os_males, 2);
     inserir(raiz_de_todos_os_males, 70);
     inserir(raiz_de_todos_os_males, 60);
     inserir(raiz_de_todos_os_males, 80);
+    inserir(raiz_de_todos_os_males, 45);
+    inserir(raiz_de_todos_os_males, 90);
+    inserir(raiz_de_todos_os_males, 100);
+    inserir(raiz_de_todos_os_males, 120);
     
-    std::cout << "----------------ORDEM         ----------------\n" ;
-    em_ordem(raiz_de_todos_os_males);
-    std::cout << "-----------------PRE-ORDEM   ----------------\n";
-    pre_ordem(raiz_de_todos_os_males);
-    std::cout << "-----------------POST-ORDEM   ----------------\n";
-    pos_ordem(raiz_de_todos_os_males);
+
+    int totalNos = contarNos(raiz_de_todos_os_males);
+    std::cout << "o total de nós é " << totalNos;
+
+    int totalSoma = somarNos(raiz_de_todos_os_males);
+    std::cout << "\no total da soma é " << totalSoma;
+
+    int profundidade = altura(raiz_de_todos_os_males);
+    std::cout << "\na profundidade da árvore é " << profundidade -1;
 }
+
 

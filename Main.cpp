@@ -39,13 +39,13 @@ int main()
 
 	separador();
 
-	std::cout << "Qual programa você quer executar? \n";
+	std::cout << "Executar a árvore? \n";
 	separador();
 
-	std::string opcoes[7] = { "1 - Soma", "2 - Subtração", "3 - Multiplicacao", "4 - Divisao", "5 - Conversão de Graus", "6 - FILA", "7 - Arvore"};
+	std::string opcoes[1] = { "1 - sim"};
 
 	separador();
-	for (int i = 0; i < 7; i++) {
+	for (int i = 0; i < 1; i++) {
 		std::cout << opcoes[i] << "\n";		
 	}
 	scanf_s("%d", &opcao);
@@ -55,37 +55,7 @@ int main()
 	switch (opcao) {
 		case 1:
 			separador();
-			std::cout << "Estou iniciando soma \n";
-			soma();
-			break;
-		case 2:
-			separador();
-			std::cout << "Estou iniciando a subtração \n";
-			subtracao();
-			break;
-		case 3:
-			separador();
-			std::cout << "Estou iniciando a subtração \n";
-			multiplicacao();
-			break;
-		case 4:
-			separador();
-			std::cout << "Estou iniciando a subtração \n";
-			divisao();
-			break;
-		case 5:
-			separador();
-			std::cout << "Estou iniciando a Conversão de Graus \n";
-			conversao_graus();
-			break;
-		case 6:
-			separador();
-			std::cout << "Estou iniciando a FILAAA \n";
-			fila();
-			break;
-		case 7:
-			separador();
-			std::cout << "Bora pra árvore \n";
+			std::cout << "Informações sobre a árvore \n";
 			arvore();
 			break;
 		default:
